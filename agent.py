@@ -9,10 +9,11 @@ from calculator import calculate
 load_dotenv()
 
 # Configure your model below. Examples:
-#   "google-gla:gemini-2.5-flash"       (needs GOOGLE_API_KEY)
+#   "groq:llama-3.3-70b-versatile"       (needs GOOGLE_API_KEY)
 #   "openai:gpt-4o-mini"                (needs OPENAI_API_KEY)
 #   "anthropic:claude-sonnet-4-6"    (needs ANTHROPIC_API_KEY)
-MODEL = "google-gla:gemini-2.5-flash"
+MODEL = "groq:llama-3.3-70b-versatile"
+
 
 agent = Agent(
     MODEL,
@@ -26,7 +27,8 @@ agent = Agent(
 
 
 @agent.tool_plain
-def calculator_tool(expression: str) -> str:
+def calculator_tool(expression
+: str) -> str:
     """Evaluate a math expression and return the result.
 
     Examples: "847 * 293", "10000 * (1.07 ** 5)", "23 % 4"
@@ -34,19 +36,19 @@ def calculator_tool(expression: str) -> str:
     return calculate(expression)
 
 
-# TODO: Implement this tool by uncommenting the code below and replacing
-# the ... with your implementation. The tool should:
-#   1. Read products.json using json.load() (json is already imported above)
-#   2. If the product_name is in the catalog, return its price as a string
-#   3. If not found, return the list of available product names so the agent
-#      can try again with the correct name
-#
-# @agent.tool_plain
-# def product_lookup(product_name: str) -> str:
-#     """Look up the price of a product by name.
-#     Use this when a question asks about product prices from the catalog.
-#     """
-#     ...
+@agent.tool_plain
+def product_lookup(product_name: str) -> str:
+    """Look up the price of a product by name.
+    Use this when a question asks about product prices from the catalog.
+    """
+    with open("products.json") as f:
+        products = json.load(f)
+
+    if product_name in products:
+        return str(products[product_name])
+
+    available_products = ", ".join(products.keys())
+    return f"Product not found. Available products: {available_products}"
 
 
 def load_questions(path: str = "math_questions.md") -> list[str]:
