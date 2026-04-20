@@ -14,7 +14,7 @@ A ReAct agent that solves questions using tool calls.
 
    To use a different provider, change the `MODEL` variable in `agent.py` and set the matching key in `.env`.
 
-3. Make sure `.env` is in your `.gitignore` so you don't commit your key.
+3. Make sure `.env` is in your `.gitignore` so you don't commit the key.
 
 ## Run
 
@@ -28,8 +28,12 @@ The agent will work through each question in `math_questions.md` and print the R
 
 ## Files
 
-- `agent.py` - the ReAct agent (this is the file you'll modify)
+- `agent.py` - the ReAct agent
 - `calculator.py` - calculator tool
 - `products.json` - product catalog with prices
 - `math_questions.md` - the questions the agent solves
-- `.env.example` - template for your API key
+- `.env.example`
+
+
+
+video link:  https://youtu.be/3-Ge4HhCHI8
