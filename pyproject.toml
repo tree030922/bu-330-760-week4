@@ -1,7 +1,8 @@
-{
-  "Alpha Widget": 29.99,
-  "Beta Widget": 45.50,
-  "Gamma Widget": 12.75,
-  "Delta Widget": 89.00,
-  "Epsilon Widget": 34.25
-}
+[project]
+name = "week4-math-agent"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic-ai",
+    "python-dotenv",
+]
